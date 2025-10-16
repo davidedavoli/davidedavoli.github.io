@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Fonts and CSS Reset -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
+
+    <script src="jquery-3.7.1.min.js"></script>
+
+    <!-- PrismJS: Syntax Highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.13.0/themes/prism.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.13.0/plugins/normalize-whitespace/prism-normalize-whitespace.js"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/solid.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/fontawesome.css">
+
+    <!-- Mustard UI -->
+    <link rel="stylesheet" href="mustard-ui-master/dist/css/mustard-ui.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <title>Davide Davoli</title>
+  </head>
+
+  <body>
+    <nav>
+      <div class="nav-container">
+	<div class="nav-logo">
+	</div>
+	<ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#publications" >Publications</a></li>
+            <li><a href="teaching.html" >Teaching</a></li>
+        </ul>
+        <a class="mobile-menu-toggle"></a>
+        <ul class="menu mobile-menu">
+            <li><a href="#about">About</a></li>
+            <li><a href="#publications">Publications</a></li>
+            <li><a href="teaching.html" >Teaching</a></li>
+        </ul>
+    </div>
+    </nav>
+    <main>
+      <section class="section-secondary">
+	<div class ="container container-middle">
+	  <div class="row">
+	    <h2>Davide Davoli</h2>
+	  </div>
+	  <div class="row">
+	    <div class="col col-lg-9">
+	    <h6>PhD student</h6>
+	      <p>
+		<strong>Centre Inria d'Université Côte d'Azur</strong> </br>
+		Building Fermat, F113 </br>
+		2004, Route des Lucioles - BP 93 </br>
+		06902 Sophia Antipolis Cedex, France </br>
+		(<span style="color: #ff6400">λxy.</span>davide<span style="color: #ff6400">y</span>davoli<span style="color: #ff6400">x</span>inria<span style="color: #ff6400">y</span>fr) <span style="color: #ff6400">@ .</span>
+	      </p>
+	    </div>
+	    <div class="col col-lg-3">
+	      <img src= "me2.jpg" width="100%"></img>
+	    </div>
+	  </div>
+	  <div class="row">
+	    <div class="col">
+	    <h4>About</h4>
+	    <p>
+	      I am a PhD student of the <a href="https://www.inria.fr/fr/splits">SPLITS</a> team at the <i>Centre Inria d'Université Côte d'Azur</i>, and I got my MSc in Computer Science
+	      at the <i>University of Bologna</i> in 2022. My main research interest lies in the application of formal methods to study the interactions of randomized computation and security.
+	    </p>
+	    </div>
+	  </div>
+	</div>
+      </section>
+      <section class="section-tertiary">
+	<div class ="container container-middle">
+	  <div class="row">
+	    <div class="col">
+	      <h4>Publications</h4>
+	      <h6>Conference and journal papers</h6>
+	      <p id="publications">
+		Please wait while the bibliography is loading...
+	      </p>
+	      <h6> Technical reports and pre-prints </h6>
+	      <p id="tech_reports">
+		Please wait while the bibliography is loading...
+	      </p>
+	    </div>
+	  </div>
+	</div>
+      </section>
+      <section class="section-secondary">
+	<div class ="container container-middle">
+	  <div class="row">
+	    <div class="col">
+      	      <h4>Talks</h4>
+	      <ul>
+		<li> <strong>A quantitative probabilistic relational Hoare logic</strong>, POPL 2025,<a href = "docs/erhl_popl.pdf"> slides</a>. 
+		<li> <strong>On Kernel’s Safety in the Spectre Era (And KASLR is Formally Dead)</strong>, CCS 2024,<a href = "docs/ks_ccs.pdf"> slides</a>. 
+		<li> <strong>On Separation Logic, Computational Independence, and Pseudorandomness</strong>, PLAS 2024,<a href = "docs/sl_plas.pdf"> slides</a>. 
+		<li> <strong>On Separation Logic, Computational Independence, and Pseudorandomness</strong>, CSF 2024,<a href = "docs/sl_csf.pdf"> slides</a>. 
+		<li> <strong>On Kernel’s Safety in the Spectre Era</strong>, 2024 Annual Meeting of the WG "Formal Methods in Security",<a href = "docs/ks_oleron.pdf"> slides</a>. 
+	      </ul>
+	    </div>
+	  </div>
+	</div>
+      </section>
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="mustard-ui-master/dist/js/mobile-menu.js"></script>
+    <script src="citation.js"></script>
+    <script>
+      $('.mobile-menu').hide()
+
+      function add_links(text){
+	  t_arr = text.split(' ');
+	  regex = new RegExp('https?:\/\/');
+	  output = t_arr.map(function (word) {
+	      if (regex.test(word)){
+		  tmp = $("<a>");
+		  tmp.attr("href", word);
+		  tmp.text(word);
+		  console.log(tmp[0].outerHTML);
+		  return tmp[0].outerHTML;
+	      }
+	      return word;
+	  }
+			    );
+	  return output.join(" ");
+      }
+
+      function is_tech(pub){
+	  // return !pub.publisher;
+	  return pub["container-title"] == "CoRR";
+      }
+
+      function show_bib(data){
+	  publications= citation(data).data;
+	  list_pub =  $("<ul>");
+	  list_tech =  $("<ul>");
+	  for (var i in publications){
+	      publications[i].title = "<strong>" + publications[i].title + "</strong>";
+	      item = $("<li>");
+	      text = citation(publications[i]).format("bibliography");
+	      text = add_links(text);
+	      $(item).append(text);
+	      if (!is_tech(publications[i]))
+		  $(list_pub).append(item);
+	      else
+		  $(list_tech).append(item);		  
+	  }
+	  $("#publications").text("");
+	  $("#publications").append(list_pub);
+	  $("#tech_reports").text("");
+	  $("#tech_reports").append(list_tech);
+      }
+      
+      publications = $.get("https://dblp.org/pid/338/8910.bib", function (data, status){
+	  if (status != "success")
+	      unsuccess_cb();
+	  else show_bib(data);
+      });
+      $(document).ready(function() {  
+      })
+    </script>
+  </body>
+</html>
