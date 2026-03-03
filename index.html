@@ -100,6 +100,11 @@
 	      <p id="tech_reports">
 		Please wait while the bibliography is loading...
 	      </p>
+	      </p>
+	      <h6> PhD thesis </h6>
+	      <p id="thesis">
+		Please wait while the bibliography is loading...
+	      </p>
 	    </div>
 	  </div>
 	</div>
@@ -148,26 +153,36 @@
 	  // return !pub.publisher;
 	  return pub["container-title"] == "CoRR";
       }
+      
+      function is_thesis(pub){
+	  // return !pub.publisher;
+	  return pub["genre"] == "phdthesis";
+      }
 
       function show_bib(data){
 	  publications= citation(data).data;
 	  list_pub =  $("<ul>");
 	  list_tech =  $("<ul>");
+	  list_thesis =  $("<ul>");
 	  for (var i in publications){
 	      publications[i].title = "<strong>" + publications[i].title + "</strong>";
 	      item = $("<li>");
 	      text = citation(publications[i]).format("bibliography");
 	      text = add_links(text);
 	      $(item).append(text);
-	      if (!is_tech(publications[i]))
-		  $(list_pub).append(item);
+	      if (is_thesis(publications[i]))
+	          $(list_thesis).append(item);
+	      if (is_tech(publications[i]))
+                  $(list_tech).append(item);		  
 	      else
-		  $(list_tech).append(item);		  
+	          $(list_pub).append(item);
 	  }
 	  $("#publications").text("");
 	  $("#publications").append(list_pub);
 	  $("#tech_reports").text("");
 	  $("#tech_reports").append(list_tech);
+	  $("#thesis").text("");
+	  $("#thesis").append(list_thesis);
       }
       
       publications = $.get("https://dblp.org/pid/338/8910.bib", function (data, status){
