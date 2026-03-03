@@ -156,6 +156,7 @@
       
       function is_thesis(pub){
 	  // return !pub.publisher;
+	  console.log(pub["genre"]);
 	  return pub["genre"] == "phdthesis";
       }
 
@@ -172,7 +173,7 @@
 	      $(item).append(text);
 	      if (is_thesis(publications[i]))
 	          $(list_thesis).append(item);
-	      if (is_tech(publications[i]))
+	      else if (is_tech(publications[i]))
                   $(list_tech).append(item);		  
 	      else
 	          $(list_pub).append(item);
