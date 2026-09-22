@@ -186,7 +186,7 @@
 	  $("#thesis").append(list_thesis);
       }
       
-      publications = $.get("https://dblp.org/pid/338/8910.bib", function (data, status){
+      publications = $.get("data/biblio.bib", function (data, status){
 	  if (status != "success")
 	      unsuccess_cb();
 	  else show_bib(data);
