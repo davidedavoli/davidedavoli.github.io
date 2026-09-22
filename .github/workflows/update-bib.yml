@@ -1,0 +1,47 @@
+# .github/workflows/update-bib.yml
+name: Update bibliography
+
+on:
+  schedule:
+    - cron: '0 3 * * *'   # daily at 03:00 UTC
+  workflow_dispatch:        # allows manual trigger from the Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  update-bib:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch latest .bib from dblp
+        run: |
+          curl -sSL --fail -o data/biblio.bib.tmp "https://dblp.org/pid/338/8910.bib"
+
+      - name: Validate downloaded file
+        run: |
+          if [ ! -s data/biblio.bib.tmp ]; then
+            echo "Downloaded file is empty — aborting."
+            exit 1
+          fi
+
+          if ! grep -q "@" data/biblio.bib.tmp; then
+            echo "Downloaded file does not look like valid BibTeX — aborting."
+            exit 1
+          fi
+
+          echo "File looks valid, proceeding."
+          mv data/biblio.bib.tmp data/biblio.bib
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/biblio.bib
+          if git diff --staged --quiet; then
+            echo "No changes"
+          else
+            git commit -m "Auto-update bibliography from dblp"
+            git push
+          fi
