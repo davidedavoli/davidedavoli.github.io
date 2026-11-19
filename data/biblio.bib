@@ -242,3 +242,48 @@
   bibsource    = {dblp computer science bibliography, https://dblp.org}
 }
 
+@inproceedings{10.1145/3830454.3832748,
+author = {Davoli, Davide and Bognar, Marton and Daniel, Lesly-Ann and Gregoire, Benjamin and Piessens, Frank and Rezk, Tamara},
+title = {dfence: Fine-Grained Speculation Barriers for Efficient and Effective Hardware-Software Protection in the Spectre Era},
+year = {2026},
+isbn = {9798400728716},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/3830454.3832748},
+doi = {10.1145/3830454.3832748},
+abstract = {Speculative execution attacks such as Spectre-PHT and Spectre-STL remain a critical security concern in modern processors. While software-based mitigations like Speculative Load Hardening (SLH) offer effective protection against Spectre-PHT, they are limited in scope and require software-managed speculative masks, which can be error-prone and costly. Defenses against Spectre-STL, such as the Speculative Store Bypass Disable bit (SSBD), incur additional performance overhead and lack fine-grained control. In this work, we introduce dfence, a new CPU instruction that generalizes SLH to mitigate both Spectre-PHT and Spectre-STL with minimal hardware support. dfence enables developers to annotate sensitive registers, with the hardware ensuring that these values do not leak transiently. We implement dfence in the Proteus CPU and evaluate its security and performance, demonstrating less than 1\% average performance overhead for our benchmarks. In addition, to support easy and secure adoption, we design a type system that statically verifies the correct placement of dfence instructions in code.},
+booktitle = {Proceedings of the 2026 ACM SIGSAC Conference on Computer and Communications Security},
+pages = {1162–1176},
+numpages = {15},
+keywords = {spectre defense, speculation barriers, risc-v, type system},
+location = {The Hague, Netherlands},
+series = {CCS '26}
+}
+
+@inproceedings{10.1145/3830454.3846718,
+author = {Song, Shixin and Davoli, Davide and Storme, Elias and Bognar, Marton and Devriese, Dominique and Piessens, Frank and Rezk, Tamara},
+title = {SCHERI: Provably Secure Speculation Under the Constant-Time Policy for CHERI},
+year = {2026},
+isbn = {9798400728716},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/3830454.3846718},
+doi = {10.1145/3830454.3846718},
+abstract = {Capability-based architectures such as CHERI provide strong support for the architectural isolation of software components. To additionally protect against microarchitectural leakage, software can be written in a constant-time fashion. Modern processors, however, rely heavily on speculative execution, which can invalidate the constant-time guarantees and leak isolated secrets transiently. In this work, we show that providing secure speculation for CHERI is non-trivial, and that existing proposals fail to preserve the confidentiality guarantees. We develop a formal framework for reasoning jointly about capability safety, speculative execution, and information-flow security, and use it to demonstrate potential leaks. We then present SCHERI, a new processor design within this framework, and formally prove that it provides end-to-end secure speculation guarantees for the constant-time policy. Our results provide formal foundations and practical guidance for building future capability-based processors, which are resilient to Spectre attacks for constant-time programs.},
+booktitle = {Proceedings of the 2026 ACM SIGSAC Conference on Computer and Communications Security},
+pages = {1207–1221},
+numpages = {15},
+keywords = {cheri, formal execution models, spectre, microarchitectural security, constant-time programming, information flow},
+location = {The Hague, Netherlands},
+series = {CCS '26}
+}
+
+@misc{cryptoeprint:2026/2881,
+      author = {Gilles Barthe and Davide Davoli},
+      title = {{RRHL}: A Relational Logic for Rényi Differential Privacy of Private Learning},
+      howpublished = {Cryptology {ePrint} Archive, Paper 2026/2881},
+      year = {2026},
+      url = {https://eprint.iacr.org/2026/2881}
+}
+
+
